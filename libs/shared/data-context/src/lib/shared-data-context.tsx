@@ -1,14 +1,17 @@
-import styles from './shared-data-context.module.css';
+import { createContext, useState } from 'react';
 
-/* eslint-disable-next-line */
-export interface SharedDataContextProps {}
+export interface SharedDataContextProps {
+  children: JSX.Element;
+}
+export const DataContext = createContext<Record<string, unknown>>({});
 
-export function SharedDataContext(props: SharedDataContextProps) {
+export function DataProvider({ children }: SharedDataContextProps) {
+  const [counter, setCounter] = useState(1);
   return (
-    <div className={styles['container']}>
-      <h1>Welcome to SharedDataContext!</h1>
-    </div>
+    <DataContext.Provider value={{ counter, setCounter }}>
+      {children}
+    </DataContext.Provider>
   );
 }
 
-export default SharedDataContext;
+export default DataProvider;
