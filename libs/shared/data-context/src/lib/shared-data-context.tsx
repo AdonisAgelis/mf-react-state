@@ -3,7 +3,8 @@ import { createContext, useState } from 'react';
 export interface SharedDataContextProps {
   children: JSX.Element;
 }
-export const DataContext = createContext<Record<string, unknown>>({});
+// eslint-disable-next-line
+export const DataContext = createContext<Record<string, any>>({});
 
 export function DataProvider({ children }: SharedDataContextProps) {
   const [counter, setCounter] = useState(1);
